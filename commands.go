@@ -4,9 +4,10 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
-func commandFetchCompletedCUs(cfg config.Config) (int, error) {
+func commandFetchCompletedCUs(cfg Config) (int, error) {
 	fmt.Printf("Fetching from %v\n", cfg.SpreadsheetID)
 	return 60, nil
 }
@@ -21,6 +22,8 @@ func runREPL() {
 		}
 		inputs := strings.TrimSpace(s.Text())
 		words := sanitizeInputs(inputs)
+
+		fmt.Println(words)
 
 	}
 }

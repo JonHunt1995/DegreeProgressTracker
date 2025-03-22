@@ -1,5 +1,5 @@
 package main
 
 func commandFetchCompletedCUs() int {
-	return 0
+	return 60
 }

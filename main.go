@@ -9,5 +9,5 @@ func main() {
 	if e != nil {
 		panic(e)
 	}
-	fmt.Println(c)
+	fmt.Println(getDocsClient(*c))
 }

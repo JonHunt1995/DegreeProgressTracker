@@ -1,2 +1,3 @@
 docs-token=docs-client-credentials.txt
 docs-id=randomcodehere
+intentionally-bad-config=no spaces here nope

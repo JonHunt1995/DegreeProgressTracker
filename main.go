@@ -3,8 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	//r := os.Stdin
-	//s := bufio.NewScanner(r)
+	//ParseConfig can probably be moved to init() later
 	c, e := parseConfig()
 
 	if e != nil {

@@ -2,3 +2,4 @@
 *.json
 DegreeProgressTracker
 .idea
+./config/config.txt

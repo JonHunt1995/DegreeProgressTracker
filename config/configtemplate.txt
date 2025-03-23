@@ -1,0 +1,4 @@
+docs-token=docs-client-credentials.json
+docs-document-id=1yth8o-n2FWwg2jhJZ7DLUsJxlx7qIQeFGuS6saXntfw
+docs-read-range=Sheet1!A1:6
+docs-api-key=

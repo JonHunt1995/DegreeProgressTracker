@@ -10,8 +10,8 @@ import (
 type Config struct {
 	docsTokenPath string
 	SpreadsheetID string
-	test1         string
-	test2         string
+	readRange     string
+	apiKey        string
 	test3         string
 }
 
@@ -38,14 +38,18 @@ func parseConfig() (*Config, error) {
 		switch tokens[0] {
 		case "docs-token":
 			config.docsTokenPath = tokens[1]
-		case "docs-id":
+		case "docs-document-id":
 			config.SpreadsheetID = tokens[1]
+		case "docs-read-range":
+			config.readRange = tokens[1]
+		case "docs-api-key":
+			config.apiKey = tokens[1]
 		}
 	}
-	//fmt.Println(config)
+	//fmt.Printf("Created configuration object:\n%s\n", config.String())
 	return &config, nil
 }
 
 func (c *Config) String() string {
-	return fmt.Sprintf("docs-token: %s\ndocs-id: %s\n", c.docsTokenPath, c.SpreadsheetID)
+	return fmt.Sprintf("docs-token: %s\ndocs-id: %s\ndocs-api-key: %s\nread-range: %s\n", c.docsTokenPath, c.SpreadsheetID, c.apiKey, c.readRange)
 }

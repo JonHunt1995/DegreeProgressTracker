@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"github.com/JonHunt1995/DegreeProgressTracker.git/internal/config"
 )
 
 func main() {

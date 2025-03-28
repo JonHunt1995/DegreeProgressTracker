@@ -10,8 +10,11 @@ import (
 )
 
 func commandFetchCompletedCUs(cfg config.Config) (int, error) {
-	fmt.Printf("Fetching from %v\n", cfg.SpreadsheetID)
-	return 60, nil
+	numCredits, err := getGoogleSheet(cfg)
+	if err != nil {
+		return 0, err
+	}
+	return numCredits, nil
 }
 
 func commandHelp() error {

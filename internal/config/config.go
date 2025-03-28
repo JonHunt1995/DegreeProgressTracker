@@ -1,7 +1,6 @@
 package config
 
 import (
-	"log"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -13,15 +12,15 @@ type Config struct {
 	TotalCreditsRange string
 }
 
-func LoadConfig() Config {
+func LoadConfig() (Config, error) {
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatalf("Error loading .env file: %v", err)
+		return Config{}, err
 	}
 
 	return Config{
-		GoogleSheetsJSON: os.Getenv("GOOGLE_SHEETS_JSON"),
-		SpreadsheetID: os.Getenv("SPREADSHEET_ID"),
+		GoogleSheetsJSON:  os.Getenv("GOOGLE_SHEETS_JSON"),
+		SpreadsheetID:     os.Getenv("SPREADSHEET_ID"),
 		TotalCreditsRange: os.Getenv("TOTAL_CREDITS_RANGE"),
-	}
+	}, nil
 }

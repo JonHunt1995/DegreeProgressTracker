@@ -14,41 +14,66 @@ func commandFetchCompletedCUs(cfg config.Config) (int, error) {
 	return 60, nil
 }
 
-func commandHelp(cfg config.Config) error {
+func commandHelp() error {
 	fmt.Println("Hello, here are the available commands:")
-	fmt.Println("\tfetchCUs: Get the completed CUs at WGU")
+	fmt.Println("\tcredits: Get the completed CUs at WGU")
 	fmt.Println("\thelp: The manual for this CLI")
-	fmt.Println("\tfexit: Get out of this program")
+	fmt.Println("\texit: Get out of this program")
+	return nil
 }
-func commandExit(cfg config.Config) error {
+func commandExit() error {
 	fmt.Println("Thanks for using this application!")
 	os.Exit(0)
 	return nil
 }
 
-func executeCommand(cfg config.Config, commandName string) {
+func executeCommand(cfg config.Config, commandName string) error {
 	switch commandName {
-	case "fetchCUs":
-		commandFetchCompletedCUs(cfg)
+	case "credits":
+		numCUs, err := commandFetchCompletedCUs(cfg)
+		if err != nil {
+			return err
+		}
+		fmt.Println(numCUs)
+
 	case "exit":
-		commandExit(cfg)
+		if err := commandExit(); err != nil {
+			return err
+		}
+
+	case "shell":
+		runREPL(cfg)
 	default:
-		commandHelp(cfg)
+		if err := commandHelp(); err != nil {
+			return err
+		}
 	}
+	return nil
 }
-func runREPL() {
-	cfg := config.LoadConfig()
+
+func runREPL(cfg config.Config) error {
+	r := os.Stdin
+	s := bufio.NewScanner(r)
 	// Runs a Loop For Commands Until Prompted To Exit
 	for {
-		s := bufio.NewScanner(os.Stdin)
 		fmt.Print("DegreeProgressTracker > ")
+		// Scan for Input
 		if ok := s.Scan(); !ok {
-			break
+			fmt.Println("Unable to find command name")
+			continue
 		}
+		// Sanitize and Validate Input
 		inputs := strings.TrimSpace(s.Text())
 		words := sanitizeInputs(inputs)
+		if len(words) < 1 {
+			fmt.Println("Unable to find command name")
+			continue
+		}
 		commandName := words[0]
+
 		// Execute Command
-		executeCommand(cfg, commandName)
+		if err := executeCommand(cfg, commandName); err != nil {
+			return err
+		}
 	}
 }

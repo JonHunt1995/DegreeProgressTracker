@@ -1,4 +1,4 @@
-package main
+package config
 
 import (
 	"context"
@@ -6,12 +6,11 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/JonHunt1995/DegreeProgressTracker.git/internal/config"
 	"google.golang.org/api/option"
 	"google.golang.org/api/sheets/v4"
 )
 
-func getGoogleSheet(cfg config.Config) (int, error) {
+func GetGoogleSheet(cfg Config) (int, error) {
 	// Auth Logic to Connect to Spreadsheet
 	ctx := context.Background()
 	jsonKey, err := os.ReadFile(cfg.GoogleSheetsJSON)

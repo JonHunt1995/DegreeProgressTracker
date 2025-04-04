@@ -10,7 +10,7 @@ import (
 )
 
 func commandFetchCompletedCUs(cfg config.Config) (int, error) {
-	numCredits, err := getGoogleSheet(cfg)
+	numCredits, err := config.GetGoogleSheet(cfg)
 	if err != nil {
 		return 0, err
 	}

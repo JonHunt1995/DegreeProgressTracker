@@ -2,7 +2,7 @@
 Automatically updates and displays my degree progress on Discord based off of a Google Sheet
 
 ## Summary
-My personal project. I used the Google Sheets API and the Discord API to make a monolith Go app that connects to a Google Sheet that I use to keep track of my credits so far. I then take this info to a discord bot that I made to update my server nickname to reflect this change. Unfortunately, I was not able to configure the permissions correctly to get the discord bot to change my nickname on my test server, but the logs show that it's logically sound. Feel free to configure this locally on your machine and let me know on GH issues if there are any problems! Below, I'll walkthrough how to set up the Sheets and Discord APIs.
+My personal project. I used the Google Sheets API and the Discord API to make a monolith Go app that connects to a Google Sheet that I use to keep track of my credits so far. I then take this info to a discord bot that I made to update my server nickname to reflect this change. Feel free to configure this locally on your machine and let me know on GH issues if there are any problems! Below, I'll walkthrough how to set up the Sheets and Discord APIs.
 
 ## Install and Configure
 Assuming that you have Go installed (see https://go.dev/dl/ for installation), first clone this project on your computer. Then, make a .env file at the root of the file which will be used to load API keys for the config struct in the program to link to the APIs. I will break it down to configuring the .env file and linking the 2 APIs in 3 subsections below:
